@@ -1,0 +1,37 @@
+{% extends "layouts/main_base.html" %}
+{% block metatags %}
+    <title>Gourmai</title>
+    <!-- Local links -->
+    <link rel="stylesheet" href="../../static/css/payments/payment.css">
+{% endblock %}
+{% block contents %}
+
+<main>
+    <!-- <script async
+        src="https://js.stripe.com/v3/buy-button.js">
+    </script>
+
+    <stripe-buy-button
+        buy-button-id="buy_btn_1OtE1VP27ZWoiqFWURgflPms"
+        publishable-key="pk_test_51OtCyxP27ZWoiqFWrp9QeQtB5raq71ynwMc7xKDCahKMcWS0TvRxEdKZeJicRgrFSgk9WPpetedsoj01GghOziMV00zcwGgaqO"
+        >
+    </stripe-buy-button> -->
+
+
+    <form action="/payments/charge" method="POST">
+        <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_51OtCyxP27ZWoiqFWrp9QeQtB5raq71ynwMc7xKDCahKMcWS0TvRxEdKZeJicRgrFSgk9WPpetedsoj01GghOziMV00zcwGgaqO"
+            data-amount="10000"
+            data-name="Demo Site"
+            data-description="Add 100 tokens"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto"
+            data-currency="usd">
+        </script>
+    </form>
+
+</main>
+
+
+{% endblock %}

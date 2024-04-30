@@ -1,0 +1,109 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+    <title>Saved Recipes</title>
+    <meta name="description" content="A place for your personal recipe library.">
+
+    <!------------------- Google fonts ------------------->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!------------------- Local CSS imports ------------------->
+    <link rel="stylesheet" href="../../static/css/canvas/recipe_book.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block contents %}
+
+<main>
+    <div class="saved-recipe-header">
+        <h2>Recipe Collection</h2>
+        <p id="response-div"></p>
+    </div>
+    <section class="saved-recipes-section">
+        {% if saved_recipes %}
+            {% for recipe in saved_recipes %}
+                    <form id="recipe-card" class="recipe-card" action="/meal/recipe/{{ recipe.id }}" method="GET" onclick="this.submit()">
+                            <img class="recipe-image" src="{% for image in recipe.images %}{{ image.image }}{% endfor %}" alt="Image of the recipe {{ recipe.recipe_name }} ">
+
+                            <div class="title-button-box">
+                                <h2 class="recipe-title"> {{ recipe.recipe_name }} </h2> 
+                                <div onclick="submitRemoveRecipeForm()" ><span  class="material-symbols-outlined delete-cross-button">close</span></div>
+                            </div>
+                        <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                    </form>
+                    <form action="/meal/remove-recipe" id="removeRecipeForm" method="POST">
+                        
+                        <input name="remove_recipe_id" type="hidden" value="{{ recipe.id }}">
+                    </form>
+            {% endfor %}
+        {% else %}
+                <div>
+                   <p>You haven't saved any recipes. That's fine generate some!</p>
+                    <a href="{{url_for('home_bp.index')}}">Home Page</a>
+                </div>
+        {% endif %}
+
+    </section>
+</main>
+
+<!-- REMOVE RECIPE JS -->
+<script>
+    $(document).ready(function() {
+        $('.delete-cross-button').click(function(e) {
+
+            e.preventDefault(); // Prevent the default anchor click behavior
+            e.stopPropagation();
+
+            var $recipeCard = $(this).closest('.recipe-card'); // Select the recipe card
+            var $form = $recipeCard.next('form'); // Select the corresponding form         
+            var formData = $form.serialize();
+            
+            
+            $.ajax({
+                url: '/meal/remove-recipe',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    // Handle the response here
+                    if (response.success) {
+                        // Handle success
+                        $recipeCard.remove(); // Remove the form from the DOM
+                    } else {
+                        // Handle error  
+                        console.log("Error removing recipe:", response.error); // Log error message
+                        $('#response-div').text(response.error).addClass('error');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error("AJAX Error:", error);
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXCKEY6B6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2DXCKEY6B6');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+<!------------------- Local script imports ------------------->
+{% endblock %}
+
+

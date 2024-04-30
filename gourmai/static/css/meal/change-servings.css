@@ -1,0 +1,24 @@
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+.change-servings-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.change-servings-box input {
+    font-weight: bold;
+    width: 25px;
+    text-align: center;
+    background-color: var(--site-card);
+    border: none;
+    outline: none;
+}
+
+.change-servings-box button {
+    border-radius: 5px;
+}

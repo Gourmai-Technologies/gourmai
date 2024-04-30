@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		<!-- set the encoding of your site -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+		{% block metatags %}
+        {% endblock %}
+		{% include "includes/incl_global_links.html" %}
+	</head>
+
+	<header id="pageHeader">
+		<!--------------- Navbar -------------->
+		{% include "includes/incl_navbar.html" %}
+	</header>
+
+	<body>
+		{% block contents %}
+		{% endblock %}
+		
+		<!-- get custom JavaScript -->
+		{% include "includes/incl_global_scripts.html" %}
+	</body>
+
+</html>

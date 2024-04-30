@@ -1,0 +1,80 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+<!-- Title and Meta Tags for the Sign-in Page -->
+<title>Sign in</title>
+<meta name="description" content="Minimal.">
+<link rel="stylesheet" href="../../static/css/auth/login.css">
+{% endblock %}
+{% block contents %}
+<main>
+  <div class="card">
+    <div class="card-header">Sign In</div>
+    <form action="/auth/login" method="POST">
+
+      <!-- CSRF Token for Security -->
+      {{ form.hidden_tag() }}
+
+      <div class="form-input-box">
+        {{ form.username(size=32, placeholder="Username", class_="form-input") }}
+      </div>
+
+      <div class="form-input-box">
+        {{ form.password(size=32, placeholder="Password", class_="form-input") }}
+      </div>
+
+      <div class="form-check-input-box">
+        {{ form.remember_me(class="form-check-input") }}
+        <label class="form-check-label" for="remember_me">Remember Me</label>
+      </div>
+
+      <div class="form-message-box">
+        <!-- Success Message -->
+        <div class="form-success-message">
+          {{ success_message }}
+        </div>
+
+        <!-- Error Message -->
+        <div class="form-error-message">
+          {{ error_message }}
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="submit-button-box">
+        {{ form.submit(class="submit-button") }}
+      </div>
+
+      <!-- Link to Registration Page -->
+      <p class="question-p">
+        Don't have an account?
+        <a class="link" href="{{ url_for('auth_bp.register') }}">Register Here</a> 
+      </p>
+
+    </form>
+  </div>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXCKEY6B6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2DXCKEY6B6');
+</script>
+
+<script src="../../static/js/login.js"></script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+</main>
+{% endblock %}

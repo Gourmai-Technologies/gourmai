@@ -1,0 +1,95 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+<title>Sign up</title>
+
+<meta name="description" content="Gourmai Registration Form">
+<link rel="stylesheet" href="../../static/css/auth/register.css">
+{% endblock %}
+
+{% block contents %}
+<main>
+  <div class="card">
+    <div class="card-header">Register</div>
+    <form action="/auth/register" method="POST">
+
+      <!-- CSRF Token for Security -->
+      {{ form.hidden_tag() }}
+
+      <div class="form-input-box">
+        {{ form.username(size=32, placeholder="Username", class_="form-input") }}
+        {% for error in form.username.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="form-input-box">
+        {{ form.email(size=32, placeholder="Email", class_="form-input") }}
+        {% for error in form.email.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="form-input-box">
+        {{ form.password(size=32, placeholder="Password", class_="form-input", id="password") }}<br>
+        {% for error in form.password.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="form-input-box">
+        {{ form.password2(size=32, placeholder="Confirm Password", class_="form-input", id="confirmPassword") }}<br>
+        {% for error in form.password2.errors %}
+        <span style="color: red;">Password do not match</span>
+        {% endfor %}
+      </div>
+      
+
+      <div class="form-message-box">
+        <!-- Success Message -->
+        <div class="form-success-message">
+          {{ success_message }}
+        </div>
+
+        <!-- Error Message -->
+        <div class="form-error-message">
+          {{ error_message }}
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="submit-button-box">
+        {{ form.submit(class="submit-button") }}
+      </div>
+
+      <!-- Link to Registration Page -->
+      <p class="question-p">
+        Already have an account?
+        <a class="link" href="{{ url_for('auth_bp.login') }}">Login Here</a> 
+      </p>
+
+    </form>
+  </div>
+
+</main>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXCKEY6B6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2DXCKEY6B6');
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+<script src="../../static/js/register.js"></script>
+{% endblock %}

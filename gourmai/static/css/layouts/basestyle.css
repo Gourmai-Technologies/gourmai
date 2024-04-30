@@ -1,0 +1,67 @@
+/***************** Global Styles *****************/
+@charset "UTF-8";
+
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+html, body {
+    height: 100%;
+    margin: 0 !important;
+    
+}
+body {  
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
+    background-color: var(--site-background)!important;
+    font-family: 'Font Name', 'crimson text' !important;
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+h1,h2,h3,h4 {
+    color: var(--site-accent);
+    letter-spacing: 0.01vw !important;
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+.button-dark {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--site-accent);
+    color: var(--site-card);
+    
+    padding: 5px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
+.button-dark:active, .button-light:active {
+    transform: translate(2px,2px);
+}
+
+.button-light {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--site-card);
+    color: var(--site-accent);
+    
+    margin-top: 5px;
+    padding: 5px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+}

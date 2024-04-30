@@ -1,0 +1,412 @@
+/***************** Site theme colours. *****************/
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+/***** Global section *****/
+html {
+    scroll-snap-type: y mandatory !important;
+}
+
+button {
+    outline: none !important;
+    border: none !important ;
+    border-radius: 5px !important;
+}
+
+.accent-color-button {
+    background-color: var(--site-accent);
+    color: var(--site-card);
+    padding: 2.5px 10px;
+}
+
+.offwhite-button {
+    padding: 2.5px 10px;
+    margin-top: auto;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+}
+
+section {
+    scroll-snap-align: center;
+    border: 3px solid var(--site-accent);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: var(--site-accent);
+}
+
+.navbar {
+    box-shadow: none !important;;
+}
+
+.custom-nav {
+    width: 100vw !important;
+    background-color: none !important;
+}
+
+/***** Header section *****/
+.landing-page-header {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Left text box */
+.becoming-beta-p {
+    position: absolute;
+    font-size: 80%;
+    z-index: 5;
+    top: 90vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.becoming-beta-p a {
+    color: #999;
+    text-decoration: underline;
+}
+.becoming-beta-p a:hover {
+    color: var(--site-card);
+}
+.landing-page-header-h2 {
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
+}
+@media screen and (max-width: 2560px) { 
+    .becoming-beta-p {
+        font-size: 30px !important;
+    }
+
+}
+
+
+.header-background-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.header-background-image-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../images/ingredients8.png') !important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(3px);
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7vh;
+    margin-bottom: 20px;;
+    width: 60vw;
+    flex-wrap: wrap;
+
+    position: relative;
+    z-index: 0;
+    
+}
+
+.text-box {
+    width: 50%;
+    color: var(--site-card);
+    padding: 10px;
+}
+
+.text-box h2 {
+   color: var(--site-card) !important;
+}  
+.photo-box {
+    width: 50%;
+    padding: 20px;
+
+}
+
+.recipe-image {
+    margin: 20px;
+    height: 600px;
+    width: 450px;
+}
+
+
+/***** Mission statement section *****/
+
+.mission-statement-section {
+    margin-top: 100vh;
+    height: 40vh;
+    background-image: url(../../images/ingredients3.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: 0px 00px;
+}
+.mission-statement-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    text-align: center;
+}
+
+.mission-statement {
+    font-size: 20px;;
+}
+.mission-statement-section p {
+    color: white;
+}
+/***** Feature section *****/
+.feature-section {
+    position: relative;
+    height: 30vh;
+    min-height: 300px;
+}
+.feature-container div h2, p {
+    color: var(--site-card)!important;
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 1);
+
+}
+.feature-section-1 {
+    background-image: url(../../images/ingredients8.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: 0px -100px;
+
+    
+}
+.feature-section-2 {
+    background-image: url(../../images/ingredients6.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: 0px -900px;
+}
+.feature-section-3 {
+    background-image: url(../../images/ingredients4.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+.feature-section-4 {
+    background-image: url(../../images/ingredients5.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: 0px -200px;
+}
+.feature-section-5 {
+    height: 20vh !important;
+    min-height: 100px !important;;
+}
+
+.blur-feature-section-background {
+    filter: blur(2px);
+    transition: filter 0.5s, box-shadow 0.5s, background-color 0.5s;
+}
+
+.no-blur-feature-section-background {
+    filter: blur(0px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.0); 
+    transition: filter 0.5s, box-shadow 0.5s, background-color 0.5s;
+}
+
+.feature-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10%;
+    width: 80vw;
+    height: 100%;
+}
+
+.no-text-shadow {
+    text-shadow: none !important;
+}
+
+.feature-container div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 20px;
+    width: 40%;
+    height: 70%;
+}
+.and-many-more-container {
+    width: 100% !important;
+}
+
+/***** why ai section *****/
+.why-ai-section {
+    position: relative;
+    background-color: var(--site-accent);
+    height: 60vh;
+}
+
+.why-ai-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 60vw;
+    min-width: 600px;
+    height: 100%;
+    padding: 80px;
+}
+
+.why-ai-box div {
+    height: 100%;
+    width: 33%;
+    margin: 30px;
+    background-color: #999;
+}
+
+.why-ai-feature-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+
+}
+/***** Pricing section *****/
+.pricing-section {
+    padding: 10vh;
+    position: relative;
+    height: 100vh;
+    flex-direction: column !important;
+    text-align: center;
+
+    background-image:url(../../images/ingredients7.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.pricing-card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60vw;
+    height: 100%;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+}
+.upgrade-button {
+    align-self: flex-end;
+}
+.pricing-card-container card {
+    height: 60%;
+    width: 25%;
+    min-width: 200px;
+    background-color: var(--site-accent);
+    border-radius: 5px;
+    padding: 2% 3%;
+}
+card {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; 
+}
+card ul {
+    padding-left: 20%;
+    text-align: left; 
+}
+card p {
+    text-shadow: none !important;
+}
+
+card h3, ul li {
+    color: var(--site-card) !important;
+    
+}
+.large-pricing-card {
+    height: 75% !important;
+    width: 37% !important;
+    padding: 3% 3% !important;
+}
+.card-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+}
+/***** Beta tester section *****/
+.final-word-section {
+    position: relative;
+    background-color: var(--site-accent);
+    height: 100vh;
+    z-index: 10000000;
+}
+
+.final-word-container {
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.final-word-container h1 {
+    color: white !important;
+}
+
+.final-word-container button {
+    margin-top: 10px;
+    outline: none;
+    border: none;
+    background-color: var(--site-card);
+    padding: 3px 20px;
+    border-radius: 10px;
+}
+
+.final-word-container button:active {
+    transform: translate(2px, 2px);
+}
+
+.animate-on-scroll {
+    opacity: 0;
+}
+@keyframes moveAndFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(50px); /* Initial position, adjust as needed */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Final position, adjust as needed */
+    }
+  }
+
+.fade-in {
+    animation: moveAndFadeIn 1s ease forwards; /* Apply animation */
+  }

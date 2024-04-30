@@ -1,0 +1,30 @@
+.box {
+    margin: 7vh auto 0 auto;
+    width: 60vw;
+    box-shadow: 0 0.4vw .6vw rgba(0, 0, 0, 0.1);
+    padding: 0 5vw 2.5vw 5vw;
+    background-color: #ededede3;
+    border-radius: .2vw;
+}
+
+.termp {
+    margin: 0 2.5vw;
+    max-width: 60vw;
+    font-size: 1vw !important;
+}
+
+ol {
+    margin-left: 2vw;
+}
+.termli {
+    margin-top: 2vh !important;
+    margin: 0 5vw;
+}
+
+h3 {
+    margin-top: 7.5vh !important;
+}
+h2 {
+    text-align: center !important;
+    padding: 2vw;
+}

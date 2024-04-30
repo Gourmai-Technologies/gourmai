@@ -1,0 +1,109 @@
+/***************** Global Styles *****************/
+:root {
+
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+/***************** Main Containers *****************/
+.pagecontainer {
+    width: 60vw !important;
+    margin: 0 auto; 
+}
+.box {
+    display: grid;
+    grid-gap: 0.75vw;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
+    margin-top: 6.5vh;
+    width: 100% !important;
+}
+
+/***************** Header styles *****************/
+h5 {
+    color: var(--site-accent) !important;
+    font-size: 1vw;
+}
+
+label {
+    font-size: 1vw;;
+}
+
+/***************** Cards and children *****************/
+.card {
+    position: relative;
+    margin-bottom: 0;
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: var(--site-card) !important;
+    background-clip: border-box;
+    border-radius: .2vw;
+    margin-bottom: 2vw;
+}
+.card-header:first-child {
+    border-radius: calc(.2rem - 1px) calc(.2rem - 1px) 0 0;
+}
+.card-header {
+    border-bottom-width: 1vw;
+    padding: 1vw !important;
+}
+.card-header {
+    padding: .75vw 1vw;
+    margin-bottom: 0;
+    background-color: var(--site-card) !important;
+    border-bottom: 1px solid #e5e9f2;
+}
+.list-group-item {
+    background-color: var(--site-card);
+    padding: 1vw !important;
+}
+.list-group-item.active {
+    background-color: var(--site-accent);
+    border: none !important;
+}
+
+a {
+    color: var(--site-accent)
+}
+
+a:hover {
+    color: var(--site-accent);
+}
+/***************** Diet option styles *****************/
+
+.diet-option-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.diet-option-item {
+    margin-bottom: 0 !important;
+}
+
+.diet-option-input {
+    margin-left: auto;
+}
+
+
+
+/***************** Button styles *****************/
+.btn-primary {
+    background-color: var(--site-accent);
+    box-shadow: none ;
+}
+
+.btn-primary:hover {
+    background-color: var(--site-accent);
+    box-shadow: none ;
+    transform: translate(1px, -1px);
+}
+
+

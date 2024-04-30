@@ -1,0 +1,205 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+<title>Discover Recipes at Gourmai</title>
+<!-- Local CSS -->
+<link rel="stylesheet" href="../../static/css/discovery/discovery.css">
+<link rel="stylesheet" href="../../static/css/extras/loading_roller.css">
+<meta name="description" content="Be picky no matter what you eat. Use our powerful AI to inspire your creativity!">
+
+<meta name="keywords" content="Gourmai, AI recipes, personalized cooking, innovative recipes, easy meals, healthy cooking, cooking for beginners, family-friendly recipes, recipe recommendations, cuisines, food, vegan recipes, Vegetarian recipes, high protein recipes, heart healthy recipes">
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}
+
+{% block contents %}
+
+<main>
+    <div class="header-bar card">
+        <h1>Discovery recipes</h1>
+        <p>Search our growing library or generate something new...</p>
+
+
+        <!-- Recipe generation form -->
+        {% include "includes/recipe_gen_form.html" %}
+
+        <!-- Suggestion card section -->
+        {% include "includes/recipe_suggestion_section.html" %}
+    </div>   
+
+    <section class="filter-section">
+        <h4 class="filter-header">Filter recipes to find exactly what you need.</h4>
+        <div class="filter-item-box">
+            
+            <input type="text" id="search-input" name="query" placeholder="Search recipes by name...">
+                
+            <!-- Dietary Dropdown -->
+            <div class="dropdown button-dark dietary-description-dropdown">
+                <span>Dietary Restrictions</span>
+                <span class="material-symbols-outlined">expand_more</span>
+                <div class="dropdown-content-box">
+
+                    <div class="diet-dropdown-content-item">
+                        <input type="checkbox" value="Gluten">
+                        <p>High Protein</p>
+                    </div>
+
+                    <div class="diet-dropdown-content-item">
+                        <input type="checkbox" value="Vegan">
+                        <p>Vegan</p>
+                    </div>
+
+                    <div class="diet-dropdown-content-item">
+                        <input type="checkbox" value="Vegetarian">
+                        <p>Vegetarian</p>
+                    </div>
+
+                    <div class="diet-dropdown-content-item">
+                        <input type="checkbox" value="Keto">
+                        <p>Keto</p>
+                    </div>         
+                </div>
+                
+            </div>
+
+            <!-- Allergen Dropdown -->
+            <div class="dropdown button-dark allergen-description-dropdown">
+                <span>Allergens</span>
+                <span class="material-symbols-outlined">expand_more</span>
+                <div class="dropdown-content-box">
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="gluten">
+                        <p class="capatalize-fl">gluten</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="egg">
+                        <p class="capatalize-fl">egg</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="fish">
+                        <p class="capatalize-fl">fish</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="milk">
+                        <p class="capatalize-fl">milk</p>
+                    </div>
+
+                    <div class="allergen-allergen-dropdown-content-item">
+                        <input type="checkbox" value="mustard">
+                        <p class="capatalize-fl">mustard</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="molluscs">
+                        <p class="capatalize-fl">molluscs</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="nuts">
+                        <p class="capatalize-fl">nuts</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="sesame">
+                        <p class="capatalize-fl">sesame</p>
+                    </div>
+
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="lupin">
+                        <p class="capatalize-fl">lupin</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="celery">
+                        <p class="capatalize-fl">celery</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="sulphites">
+                        <p class="capatalize-fl">sulphites</p>
+                    </div>
+
+                    <div class="allergen-dropdown-content-item">
+                        <input type="checkbox" value="sulpher dioxide">
+                        <p class="capatalize-fl">sulpher dioxide</p>
+                    </div>
+                   
+                </div>              
+            </div>
+
+            <input type="text" id="ingredient-input" name="ingredient-input" placeholder="Search recipes by ingredient...">
+
+            <input type="text" id="cuisine-input" name="cuisine-input" placeholder="Search recipes by cuisine...">
+
+        </div>
+
+        <form id="apply-filters" action="/discovery/filter">
+            <button class="button-light apply-filter-button" id="">Search</button>
+            <input type="hidden" name="diet-filters-input" id="diet-filters-input" value="">
+            <input type="hidden" name="allergen-filters-input" id="allergen-filters-input" value="">
+            <input type="hidden" id="search-query" name="search-query">
+            <input type="hidden" name="ingredient-query" id="ingredient-query" value="">
+            <input type="hidden" name="cuisine-query" id="cuisine-query" value="">
+        </form>
+        <div class="filter-list"></div>
+    </section>
+    <!-- Discovery Content -->
+    <h3 class="content-section-header">Here are some people generated earlier...</h3>
+    <section class="content-section">
+        
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <form id="recipe-card" class="recipe-card" action="/meal/recipe/{{ recipe.id }}" method="GET" onclick="this.submit()">
+                        <img class="recipe-image" src="{% for image in recipe.images %}{{ image.image }}{% endfor %}" alt="Image of the recipe ">
+
+                        <div class="title-button-box">
+                            <h2 class="recipe-title"> {{ recipe.recipe_name }} </h2>
+                        </div>
+                    <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                </form>
+            {% endfor %}
+        {% else %}
+        <h2>Sorry no recipes found, feel free to generate your own!</h2>
+        
+        {% endif %}
+
+    </section>
+    <div style="display: none;" class="no-more-recipes-message">No more recipes, feel free  to generate more!</div>
+
+     <div id="loadingBox" class="loading-box loading-box-inactive">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        <p>Converting bytes to bites...</p>
+    </div>
+
+    
+    <div id="loading-spinner" class="loading-spinner">
+        <img src="../../static/gif/loader.gif" alt="Loading Spinner">
+    </div>
+</main>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+
+<input type="hidden" id="current-page" value="1">
+<script src="../../static/js/discovery.js"></script>
+<script src="../../static/js/discovery_filter.js"></script>
+{% endblock %}

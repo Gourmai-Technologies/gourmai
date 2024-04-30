@@ -1,0 +1,57 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+
+<title>Gourmai Recipes | Let our AI inspire you.</title>
+
+<!-- Local links -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<meta name="keywords" content="Gourmai, AI recipes, personalized cooking, innovative recipes, easy meals, healthy cooking, cooking for beginners, family-friendly recipes, recipe recommendations, cuisines, food, vegan recipes, Vegetarian recipes, high protein recipes, heart healthy recipes">
+
+<link rel="stylesheet" href="../../static/css/home/index.css">
+<link rel="stylesheet" href="../../static/css/extras/loading_roller.css">
+<meta name="description" content="Discover the future of cooking with Gourmai's AI-powered recipes. Get personalized recommendations, explore innovative flavors, and enjoy step-by-step guidance for stunning dishes. Gourmai revolutionizes the culinary experience, making cooking accessible and exciting for everyone. Unleash your inner chef with Gourmai's AI technology and embark on a delightful culinary journey.">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}
+{% block contents %}
+{% if not suggestion1 %}
+    <div class="gourmai-intro-box active-box" id="toggleBox">
+        <h3 class=""><strong>Welcome to Gourmai</strong></h3>
+        <h4><strong>Where Every Dish is a Masterpiece!</strong></h4>
+        <form action="/discovery" method="GET" ><button type="submit" class="button-dark recipe-gen-button">Try our Recipe Generator!</button></form>
+    </div>
+{% endif %}
+
+
+<div class="version-box">Beta Release!   V1.1 <a href="https://amzn.to/3VKAqTc">Affiliate</a></div>
+<a class="donation-button" href="/payments/create-donation-checkout-session">Donate</a>
+
+
+<script src="../../static/js/index.js"></script>
+<script src="../../static/js/index_lazy_load.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXCKEY6B6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2DXCKEY6B6');
+</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+{% endblock %}

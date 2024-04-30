@@ -1,0 +1,124 @@
+
+/***************** Meal Suggestions *******************/
+.suggestion-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    
+}
+
+.main-suggestion-form, .side-suggestion-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.main-suggestion-card {
+    width: 175px;
+}
+
+.side-suggestion-card {
+    display: flex;
+    min-width: 175px;
+}
+.main-suggestion-card, .side-suggestion-card {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--site-accent);
+    color: var(--site-card);
+    padding: 20px;
+    text-align: center;
+    user-select: none;
+}
+
+.main-suggestion-card:hover, .side-suggestion-card:hover {
+    background-color: rgb(83, 83, 83);
+    color: var(--site-card);
+    cursor: pointer;
+}
+
+.main-suggestion-card:active, .side-suggestion-card:active {
+    transform: translate(2px, 2px);
+}
+
+.selected {
+    position: relative;
+    background-color: rgb(105, 105, 105);
+    color: var(--site-card);
+}
+
+.action-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.main-suggestion-card h5 {
+    margin: 0 !important;
+    font-size: 20px;
+    border-bottom: 1px solid var(--site-card);
+}
+.regenerate-button-form button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.suggestion-action-button {
+    height: 40px;
+    margin: 5px;
+    background-color: var(--site-accent);
+    border: none;
+    color: var(--site-card);
+    border-radius: 5px;
+}
+
+.suggestion-action-button:active {
+    transform: translate(2px, 2px);
+}
+
+.suggestion-action-button:hover {
+    background-color: var(--site-card);
+    color: var(--site-accent);
+    transition: 0.5s background-color;
+    
+}
+
+@media (max-width: 500px) {
+    /***************** Meal Suggestions *******************/
+.suggestion-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+
+.main-suggestion-form, .side-suggestion-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 100%;
+}
+
+
+.main-suggestion-card {
+    min-width: 175px;
+    max-width: 25%;
+}
+}
+

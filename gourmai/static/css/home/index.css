@@ -1,0 +1,138 @@
+/***************** Site theme colours. *****************/
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+body {
+    font-family: 'Font Name', 'crimson text';
+    background-image: url('../../images/ingredients4_lazy.png');
+    transition: background-image 0.5s ease;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.recipe-gen-button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 12px !important;
+    font-size: 1.25rem;
+    border-radius: 5px !important;
+    margin-top: 10px;
+}
+
+.version-box {
+    position: absolute;
+    left: 1%;
+    bottom:1%;
+
+
+    font-weight: bold;
+    color: var(--site-card);
+    opacity: 0.8;;
+}
+
+.donation-button {
+    position: absolute;
+    right: 1%;
+    bottom:1%;
+
+
+    font-weight: bold;
+    color: var(--site-card);
+    opacity: 0.8;;
+    
+}
+
+
+
+/***************** Intro Box *******************/
+.gourmai-intro-box {
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    user-select: none;
+    z-index: 5;
+    text-align: center; 
+    min-width: 600px;
+   
+}
+
+.gourmai-intro-box h3 {
+    user-select: none;
+    margin: 0 0 0 0;
+    color: var(--site-accent); 
+    font-size: 5rem;  
+    font-family: 'Font Name', 'crimson text';
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8)
+}
+
+.gourmai-intro-box h4 {
+    user-select: none;
+    margin: 0px 0;
+    color: var(--site-accent); 
+    font-size: 2.5rem;
+    line-height: 1.5; 
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8)
+}
+
+/***** JS classes for animation *****/
+
+.active-box {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    transition: transform 0.2s ease-in-out;
+}
+.inactive-box {
+    position: absolute;
+    transform: translateX(-50%) translateY(-100vh);
+    transition: transform 0.2s ease-in-out;
+}
+
+/******************** max-width: 950px ********************/
+
+@media (max-width: 950px) {
+    .gourmai-intro-box {
+        max-width: 95%;
+
+    }
+
+    .gourmai-intro-box h3 {
+        font-size: 4rem !important;
+    }
+
+    .gourmai-intro-box h4 {
+        font-size: 2rem!important;
+    }
+
+
+
+}
+/******************** max-width: 600px ********************/
+
+@media (max-width: 600px) {
+
+    .gourmai-intro-box {
+        
+        max-width:  95%;
+        top: 50%;
+    }
+
+    .gourmai-intro-box h3 {
+        font-size: 2rem !important;
+        
+    }
+
+    .gourmai-intro-box h4 {
+        font-size: 0.75rem !important;
+        margin: 0;
+    } 
+
+    .recipe-gen-button {
+        font-size: 0.5rem;
+        padding: 8px !important;
+    }
+
+}
+

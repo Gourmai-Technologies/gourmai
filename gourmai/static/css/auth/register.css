@@ -1,0 +1,163 @@
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+body {
+    height: 100vh;
+    background-image: url('../../images/ingredients6_lazy.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+/***************** Card *******************/
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+
+    background-color: var(--site-accent);
+    padding: 50px 20px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+.card form {
+    max-width: 100%;;
+}
+
+.card-header {
+    margin: 0px 0px 15px 0px;
+    font-size: 2.5rem;
+    color: var(--site-card);
+}
+
+/***************** Inputs *******************/
+
+.form-input-box {
+    border-bottom: 1px solid var(--site-card);
+    width: 100%;
+}
+
+.form-input {
+    background-color: var(--site-accent);
+    outline: none;
+    border: none;
+    height: 50px;
+    color: var(--site-card);
+    font-size: 1.3rem;
+    
+    max-width: 85%;
+    margin: 5px 0;
+}
+
+
+
+
+/***************** Checkbox switch *******************/
+.form-check-input-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid var(--site-card);
+    background-color: var(--site-accent) !;
+    cursor: pointer;
+}
+
+.form-check-input-box .form-check-input::after {
+    content: "";
+    display: none;
+    width: 30px;
+    height: 30px;
+    background-color: var(--site-accent) !important;
+  }
+  
+.form-check-input-box input[type="checkbox"]:checked + .form-check-input::after {
+    display: block;
+  }
+
+.form-check-label {
+    color: var(--site-card);
+    font-size: 1rem;
+}
+
+/***************** Messages *******************/
+.form-message-box {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.form-message-box div {
+    margin: 0 0 5px 0;
+}
+
+.form-success-message {
+    color: green;
+}
+
+.form-error-message {
+    color: red;
+}
+/***************** Submit Button *******************/
+.submit-button-box {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.submit-button {
+    flex-grow: 1;
+    height: 40px;
+
+    background-color: var(--site-card);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 25px;
+}
+
+.submit-button:active {
+    transform: translate(2px, 2px);
+}
+
+/***************** Question p *******************/
+.question-p {
+    color: var(--site-card);
+    text-align: center;
+    padding-top: 10px;
+    font-size: 0.9rem;
+}
+
+.question-p a {
+    color: rgb(71, 71, 251);
+}
+
+@media (max-width: 440px) {
+    .card {
+        max-width: 300px !important;
+    }
+}

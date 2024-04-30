@@ -1,0 +1,39 @@
+# True for development, False for production
+DEBUG=FALSE
+
+
+# Flask ENV
+FLASK_APP=run.py
+FLASK_ENV=development
+
+# If not provided, a random one is generated # 
+SECRET_KEY=THISKEYISASECRETONE
+
+# Used for CDN (in production)
+# No Slash at the end
+ASSETS_ROOT=/static/assets
+
+# If DB credentials (if NOT provided, or wrong values SQLite is used) #
+DB_ENGINE=postgresql+psycopg
+DB_HOST=192.151.145.250
+DB_NAME=gourmai_dev
+DB_USERNAME=gourmai_dev
+DB_PASS=Q2dU5T3sy8LgPrKR
+DB_PORT=5433
+
+# Flask-Mail Configuration #
+MAIL_SERVER='smtp.fastmail.com'
+MAIL_PORT= 465
+MAIL_USE_TLS= False
+MAIL_USE_SSL = True
+MAIL_USERNAME ="gourmai_feedback@fastmail.com"
+MAIL_PASSWORD= "53ymvwkppbr8694d"
+
+
+# SenGrid Mail #
+#SENDER_EMAIL="cody@gourmai.com"
+#RECIPIENT_EMAIL="cody@gourmai.com"
+#SENDGRID_API_KEY=""
+
+# OpenAI API Key #
+OPENAI_API_KEY=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 

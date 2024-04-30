@@ -1,0 +1,158 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+
+<title>Gourmai</title>
+
+<!-- Local links -->
+<link rel="stylesheet" href="../../static/css/home/landing.css">
+
+{% endblock %}
+
+{% block contents %}
+<body>
+    <section class="landing-page-header">
+        <div class="header-background-image-container"></div>
+        <div class="content-container">
+            <div class="text-box">
+                <h2 class="landing-page-header-h2">Gourmai, here to revolutionize the recipe experience.</h2>
+                <p>Experience the future of cooking with Gourmai, where AI meets culinary expertise to bring you personalized recipes tailored to your tastes and dietary preferences.</p>
+                <p>Say goodbye to uninspired meals and hello to culinary innovation!</p>
+                <form action="{{url_for('home_bp.index')}}"><button  class="accent-color-button">Start for free</button></form>
+                
+            </div>
+
+            <div class="photo-box"><img class="recipe-image" src="../../static/images/landingrecipe.png" alt="recipe showcase"></div>
+        </div>
+        <p class="becoming-beta-p">Interested in becoming a beta tester? Click <a href="#pricing-section">here</a> to discover the perks! </p>
+    </section>
+
+    <section class="mission-statement-section blur-feature-section-background blur-box">
+        <div class="mission-statement-box">
+            <p class="mission-statement">Gourmai is early in it's life. We strive to make the best recipe service in the world, in course revolutionizing the way we find and interact with food information. In persuit of making your life easier and more fulfilled every step of the way.</p>
+            <br>
+            <p class="mission-statement">Join us for this journey!</p>
+        </div>
+    </section>
+
+    <section class="feature-section feature-section-1 blur-feature-section-background blur-box">
+        <div class="feature-container">
+            <div class="element animate-on-scroll" >
+                <h2>Personalization</h2>
+                <p>Gourmai utilizes AI algorithms to generate recipes tailored to each user's preferences, dietary restrictions, and cooking habits, allowing Gourmai to create customized recipes that cater to individual tastes and requirements. Leading to a more satisfying cooking experience.</p>
+            </div>
+            <div></div>
+        </div>
+    </section>
+
+    <section class="feature-section feature-section-2 blur-feature-section-background blur-box">
+        <div class="feature-container">
+            <div></div>
+            <div class="element animate-on-scroll">
+                <h2>Variety and Creativity</h2>
+                <p>Gourmai's innovative approach to recipe generation, customization, and community engagement promises to revolutionize the culinary landscape by offering ground-breaking variety and creativity that inspires users to explore new culinary horizons, experiment with innovative flavors, and unleash their creativity in the kitchen.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section feature-section-3 blur-feature-section-background blur-box">
+        <div class="feature-container">
+            <div class="element animate-on-scroll">
+                <h2>Adaptability to Preferences</h2>
+                <p>Unlike traditional recipe services that provide generic recipes, Gourmai's adaptive approach ensures that everyone receives recipes that align with their specific tastes and needs, resulting in a more satisfying and enjoyable cooking experience.</p>
+            </div>
+            <div></div>
+        </div>
+    </section>
+
+    <section class="feature-section feature-section-4 blur-feature-section-background blur-box">
+        <div class="feature-container">
+            <div></div>
+            <div class="element animate-on-scroll ">              
+                <h2>Easy recipe finding</h2>
+                <p> Gourmai will significantly enhance the discoverability of recipes compared to traditional methods of searching through endless recipe collections.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feature-section feature-section-5 ">
+        <div class="feature-container">
+            
+            <div class=" and-many-more-container">              
+                <h2  class="no-text-shadow">And so much more...</h2>
+                <p class="no-text-shadow">In essence, AI-driven recipe generation transcends the limitations of traditional services by delivering personalized, innovative, and adaptable culinary experiences at an unprecedented scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing-section" class="pricing-section ">
+        <p>Each user currently gets 10 free recipes a month on us.</p>
+        <p>In order to achieve Gourmais potential,unfortunatly we must gather resources and advice.</p>
+        <div class="pricing-card-container">
+            
+            <card>
+                <h3>Pay as you go</h3>
+                <ul>
+                    <li>1 token per recipe.</li>
+                    <li>Alterations are free</li>
+                </ul>
+                <button class="offwhite-button">Upgrade</button>
+            </card>
+
+            <card class="large-pricing-card">
+                <h3>Become a beta tester</h3>
+                <p class="">As Gourmai is early in development, we're looking for some people to try our service and tell us where to improve.</p>
+                <ul>
+                    <li>Get 50 free tokens</li>
+                    <li>Priority customer support</li>
+                    <li>Free tokens for good feedback</li>
+                    <li>Early access to new features</li>
+                </ul>
+                <div class="card-buttons">
+                    <form action="{{url_for('auth_bp.register')}}"><button class="upgrade-button">Sign Up</button></form>
+                </div>
+            </card>
+
+            <card>
+                <h3>Subscribe</h3>
+                <ul>
+                    <li>Get unlimeted tokens</li>
+                    <li>Priority customer support</li>
+                    <li>Free tokens for good feedback</li>
+                </ul>
+                <div class="card-buttons">
+                    <form action="{{url_for('auth_bp.register')}}"><button class="upgrade-button">Sign Up</button></form>
+                </div>
+            </card>
+        </div>
+
+    </section>
+
+    <section class="final-word-section">
+        <div class="final-word-container">
+            <h1>The future is now in your hands.</h1>
+            <form action="{{url_for('auth_bp.register')}}"><button>Sign Up</button></form>
+        </div>
+    </section>
+<!--
+    <section class="why-ai-section">
+        <div class="why-ai-box">
+            <div class="why-ai-feature-card">
+                <h5>Customization</h5>
+                <p>We can leverage AI to give you more customization than was ever availible. <br> On a certain diet, have allergens or prefer a particular ingredient. No problem! Tell us your exact preferences and get recipes that fit your mood, taste and health goals!</p>
+            </div>
+
+            <div class="why-ai-feature-card">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, nesciunt?</p>
+            </div>
+
+            <div class="why-ai-feature-card">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, nesciunt?</p>
+            </div>
+        </div>
+    </section>
+-->
+
+</body>
+<script src="../../static/js/landing.js"></script>
+{% endblock %}

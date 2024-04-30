@@ -1,0 +1,22 @@
+{
+    "name": "gourmai",
+    "mastertemplate": "boilerplate-code-flask-dashboard",
+    "version": "v0.9.0",
+    "description": "AI Driven Meal Planning App",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gourmai/gourmai"
+    },
+    "bugs": {
+        "url": "https://github.com/gourmai/gourmai/issues",
+        "email": "support@gourmai.co.uk"
+    },
+    "author": "Gourmai",
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+        
+    }
+}

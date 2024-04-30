@@ -1,0 +1,800 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+    <title>{{ recipe.recipe_name }} Recipe</title>
+    <meta name="description" content="{{ recipe.summary.summary | safe }}">
+    <link rel="stylesheet" href="../static/css/meal/recipe.css">
+    <link rel="stylesheet" href="../../static/css/extras/ratingstar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/meal/recipe.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/meal/change-servings.css') }}">
+    <script src="{{ url_for('static', filename='js/recipe.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+{% block contents %}
+
+<section class="message-to-user-section box">
+
+    <div class="message-header">
+        <h2 class="message-title">Message to users of gourmai.</h2>
+        <button type="button" class="button-dark messageExpandButton">Click to expand</button>
+    </div>
+
+    <div class="message-content" style="display: none">
+        <p class="message-p">
+            Dear valued users,<br><br>
+            
+            We are thrilled to have you here at the start of our journey. Our goal is to provide you with the best possible recipe experience by using AI to deliver a service unmatched in quality.<br><br>
+            
+            As we continue to grow and improve our platform, we believe that your feedback and suggestions are invaluable. We want to work closely with you to understand your challenges, desires, and ideas, so we can make this website even better and more helpful for everyone. <br><br>
+            
+            If you have any suggestions, feature requests, or if you encounter any issues while using our website, we encourage you to reach out to us. We have implemented an easy-to-use message box below, where you can share your thoughts, questions, or concerns. Our dedicated team is here to listen and collaborate with you to find the best solutions.<br><br>
+            
+            Your insights and experiences are crucial in shaping the future of our recipe website. By working together, we can create a platform that not only meets your needs but also exceeds your expectations.<br><br>
+            
+            Thank you for being a part of our community, and we look forward to hearing from you soon!<br><br>
+            
+            Best regards,<br>
+            Cody<br>
+            Founder of Gourmai
+        </p>
+        <!-- Recipe Input Field -->
+        <form id="messageForm" class="email-form-box" onsubmit="return validateForm();">
+            
+            {{ form.csrf_token }}
+
+            <!-- Message Field -->
+            <div class="email-input-field textarea-input">
+                <span class="material-symbols-outlined">
+                    chat
+                </span>|
+                {{ form.message(class="", placeholder="All feedback is greatly valued. If you would like a response, use the message box at the bottom of the page.") }}
+            </div>
+
+            <!-- Error Message -->
+            <div class="email-error-message" id="error"></div>
+
+            <!-- Send Button -->
+            <div class="email-send-button-box">
+                <div class="email-response-message" id="result"></div>
+                {{ form.submit(class="email-send-button", id="sendButton") }}
+            </div>
+
+            <!-- Your JavaScript code -->
+            <script>
+                $(document).ready(function(){
+                    $('#sendButton').click(function(event){
+                        event.preventDefault();  // Prevent default form submission behavior
+                        var formData = $('#messageForm').serialize();  // Serialize form data
+                        $.ajax({
+                            url: '/email/send-message',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response){
+                                $('#result').text(response.message);
+                            },
+                            error: function(xhr, status, error){
+                                $('#result').text(response.error);
+                                console.error(error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        </form>
+
+    </div>
+    <script>
+        const messageExpandButton = document.querySelector('.messageExpandButton');
+        const messageContent = document.querySelector('.message-content');
+      
+        messageExpandButton.addEventListener('click', function() {
+            if (messageContent.style.display === 'none') {
+                messageContent.style.display = 'block';
+            } else {
+                messageContent.style.display = 'none';
+            }
+        });
+    </script>
+</section>
+
+
+<div class="recipecontainer">
+    <input type="hidden" id="recipeID" value="{{ recipe.id }}">
+    <!------------------- Left Column ------------------->
+    <div class="leftcontainer "> 
+        <div class="leftinnercontainer box">
+
+            <!-- Nutrition Value Container -->
+            <div class="nutrition-container topsection">
+                <h3 class="nutrition-header">Nutrition:</h3>
+                <div class="nutrition-item">
+                    <h6 class="" >Protein:</h6>
+                    <div class=" nutrition-data info-text">{{ recipe.nutrition.protein | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Calories:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.calories | safe }}kcal</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Total Fat:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.total_fat | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sat Fat:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.saturated_fat | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sodium:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.sodium | safe }}mg</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Carbohydrates:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.carbohydrates | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sugar:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.sugar | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Fibre:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.fibre | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Potassium:</h6>
+                    <div class="nutrition-data  info-text">{{ recipe.nutrition.potassium | safe }}mg</div>
+                </div>
+            </div>
+
+            <!-- Recipe Information -->
+            <div class="recipe-information-box">
+                <div class="recipe-information-item">
+                    <h6 class="" >Cuisine:</h6>
+                    <div class=" info-item" >{{ recipe.cuisine }}</div>
+                </div>
+                <div class="recipe-information-item">
+                    <h6 class="">Prep:</h6>
+                    <div class="info-item">{{ recipe.prep_time | safe }} mins</div>
+                </div>
+                <div class="recipe-information-item">
+                    <h6 class="">Cooking:</h6>
+                    <div class="info-item">{{ recipe.cook_time| safe }} mins</div>
+                </div>
+                <div class="recipe-information-item">
+                    <h6 class="">Total:</h6>
+                    <div class="info-item">{{ recipe.total_time }} mins</div>
+                </div>
+                <div class="recipe-information-item">
+                    <h6 class="">Servings:</h6>
+                    <div class="info-item">{{ recipe.servings | safe }}</div>
+                </div> 
+                <div class="recipe-information-item">
+                    <h6 class="">Difficulty:</h6>
+                    <div class="info-item">{{ recipe.difficulty | safe }}</div>
+                </div>
+                <div class="recipe-information-item">
+                    <h6 class="" >Date Created:</h6>
+                    <div class=" info-item" >{{ time_string }}</div>
+                </div> 
+
+            </div>
+        </div>
+
+        
+        <div class="save-recipe-button-box">
+            {% if current_user.is_authenticated %}
+                <a class="save-recipe-button" id="save-recipe-btn">Save Recipe</a>
+            {% else %}
+                <a class="save-recipe-button">Log in to Save</a>
+            {% endif %}
+            <a class="generate-recipe-link-button" id="generate-link-button">Generate Link</a>
+        </div>
+        
+
+        <div id="message-div"></div>
+        
+                    <!-- Generate Link JS -->
+                    <script>
+                        $(document).ready(function() {
+                            $('#generate-link-button').click(function(e) {
+                                e.preventDefault();
+                    
+                                
+                    
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/generate-link',
+                                    success: function(response) {
+                                        // Hide loading spinner
+                    
+                                        if (response.error) {
+                                            // Handle login error
+                                            $('#message-div').text(response.error).addClass('error');
+                                        } else {
+                                            // Copy the link
+                                            var tempInput = $('<input>');
+                                            $('body').append(tempInput);
+                                            tempInput.val(response.hashed_id).select();
+                                            document.execCommand('copy');
+                                            tempInput.remove();
+                    
+                                            // Handle success
+                                            $('#generate-link-button').text("Link Copied");
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        // Hide loading spinner
+                    
+                                        // Handle error
+                                        console.error(error);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function() {
+                            $('#save-recipe-btn').click(function(e) {
+                                e.preventDefault();
+                    
+                                
+                                $('#save-recipe-btn').text("Saving...");
+                    
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/meal/save-recipe',
+                                    success: function(response) {
+                                        // Hide loading spinner
+                                        
+                    
+                                        if (response.error) {
+                                            // Handle login error
+                                            $('#message-div').text(response.error).addClass('error');
+                                        } else {
+                                            // Handle success
+                                            $('#save-recipe-btn').text("Recipe Saved");
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        // Hide loading spinner
+                                        
+                                        // Handle error
+                                        console.error(error);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+    
+    </div>
+
+    <!------------------- Center Column ------------------->
+    <div class="centercontainer">
+        
+        <!-- Center Column Image Container -->
+        <div class="recipeimagecontainer box">
+            <img class="recipeimage" src="{% for image in recipe.images %}{{ image.image }}{% endfor %}">
+        </div>
+
+        <!-- Center Column Header Box -->
+        <div class="recipeheader box">
+            <div class="name-origin-box">
+                <h1 class=" dish-name" id="recipeName">{{ recipe.recipe_name }}</h1>
+                <div class="origin ">{{ recipe.origin | safe }}</div>
+                
+            </div> 
+
+            <div class="summarybox">
+                
+                <div class="para">{{ recipe.summary | safe }}</div>
+                {% if recipe.diet_conclusion %}
+                    <h6>{{ diet | safe }}</h6>
+                    <div class="para">{{ recipe.diet_conclusion.summary | safe }}</div>
+                {% endif %}    
+            </div>
+
+            <div class="tag-box">
+                {% if recipe.allergen_tags %}
+                <div class="allergen-tag-box">
+                    <label class="allergen-label" for="tag">Allergens:</label>
+                    {% for allergen in recipe.allergen_tags %}
+                        <div class="tag">{{ allergen }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if recipe.diet_tags %}
+                <div class="diet-tag-box">
+                    {% for diet_tag in recipe.diet_tags %}
+                        <div class="tag">{{ diet_tag }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!------------------- max-width: 768px ------------------->
+        <div class="bottom-container"> 
+            <!-- Left Recipe Information -->
+            <div class="recipe-info-box box">
+                <div class="info-item">
+                    <h6 class="" >Prep:</h6>
+                    <div class=" info-text" >{{ recipe.prep_time }} mins</div>
+                </div>
+                <div class=" info-item">
+                    <h6 class="" >Cooking:</h6>
+                    <div class=" info-text" >{{ recipe.cook_time }} mins</div>
+                </div>
+                <div class=" info-item">
+                    <h6 class="" >Total:</h6>
+                    <div class=" info-text" >{{ recipe.total_time }} mins</div>
+                </div>
+                <div class=" info-item">
+                    <h6 class="" >Servings:</h6>
+                    <div class=" info-text" >{{ recipe.servings }}</div>
+                </div>    
+                <div class="info-item">
+                    <h6 class="" >Difficulty:</h6>
+                    <div class=" info-text" >{{ recipe.difficulty }}</div>
+                </div>  
+                <div class="info-item">
+                    <h6 class="" >Date Created:</h6>
+                    <div class=" info-text" >{{ time_string }}</div>
+                </div>  
+                <div class="info-item">
+                    <h6 class="" >Cuisine:</h6>
+                    <div class=" info-text" >{{ recipe.cuisine }}</div>
+                </div>    
+            </div>
+
+            <!-- Ingredient-Equipment Container -->
+            <div class="ingredient-equipment-box">
+                <!-- Ingredient Container -->
+                <form class="ingredient-box box">
+                    <h3 class="ingredient-header">Ingredients:</h3>
+                    <div class="ingredient-list">
+
+                        {% for recipe_ingredient in recipe.ingredients %}
+                        <div class="ingredient-item-box">
+                            
+                          <div class="ingredient-name"><strong>{{ recipe_ingredient.ingredient.name }}</strong></div>
+                          <div class="ingredient-quantity" data-original-value="{{ recipe_ingredient.quantity }}">{{ recipe_ingredient.quantity }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="change-servings-box">
+                        <button type="button" id="minusButton" class="button-dark minusButton">-</button>
+                        <input class="servingsValue" id="servingsValue" type="text" value="1" pattern="\d*" placeholder="1">
+                        <button type="button" id="plusButton" class="button-dark plusButton">+</button>
+                    </div>
+                </form>
+
+                <!-- Equipment Container -->
+                <div class="equipment-column">
+                    <!-- Equipment Container -->
+                    <div class="equipment-box box">
+                        <h3 class="equipment-header">Equipment:</h3>
+                        <div>         
+                            {% for item in recipe.equipment %}
+                                <div class="equipment-item">{{ item }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    
+
+                    <div class="save-recipe-button-box">
+                        <a class="save-recipe-button" id="save-recipe-btn-2">Save Recipe</a>
+                        <a class="generate-recipe-link-button" id="generate-link-button-2">Generate Link</a>
+                    </div>
+                    <script>
+                        $(document).ready(function() {
+                            $('#generate-link-button-2').click(function(e) {
+                                e.preventDefault();
+                    
+                                
+                    
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/generate-link',
+                                    success: function(response) {
+                                        // Hide loading spinner
+                    
+                                        if (response.error) {
+                                            // Handle login error
+                                            $('#message-div').text(response.error).addClass('error');
+                                        } else {
+                                            // Copy the link
+                                            var tempInput = $('<input>');
+                                            $('body').append(tempInput);
+                                            tempInput.val(response.hashed_id).select();
+                                            document.execCommand('copy');
+                                            tempInput.remove();
+                    
+                                            // Handle success
+                                            $('#generate-link-button-2').text("Link Copied");
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        // Hide loading spinner
+                    
+                                        // Handle error
+                                        console.error(error);
+                                    }
+                                });
+                            });
+                        });
+                    </script> 
+                    <script>
+                        $(document).ready(function() {
+                            $('#save-recipe-btn-2').click(function(e) {
+                                e.preventDefault();
+                    
+                                
+                                $('#save-recipe-btn-2').text("Saving...");
+                    
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '/meal/save-recipe',
+                                    success: function(response) {
+                                        
+                                        
+                    
+                                        if (response.error) {
+                                            // Handle login error
+                                            $('#message-div').text(response.error).addClass('error');
+                                        } else {
+                                            // Handle success
+                                            $('#save-recipe-btn-2').text("Recipe Saved");
+                                            $('#save-recipe-btn').text("Recipe Saved");
+
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        
+                        
+                                        // Handle error
+                                        console.error(error);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div> 
+            </div>
+        </div>
+        <!------------------- max-width: 768px END ------------------->
+
+        <!-- Center Column Main Content -->
+        <div class="centermainsection box">
+
+            <div class="methodbox" >
+                <h3 class="method-header">Method:</h3>
+                
+                <ol class="method-ol">
+                    {% for step in recipe.method %}
+                        <li class="method-step">{{ step | safe }}</li>
+                    {% endfor %}
+                </ol>
+                                
+            </div>
+        </div>
+
+        <div class="nutrition-question-box">
+            <!-- Nutrition Value Container -->
+
+            <div class="nutrition-container-mobile box">
+                <h3 class="nutrition-header">Nutrition:</h3>
+                <div class="nutrition-item">
+                    <h6 class="" >Protein:</h6>
+                    <div class=" nutrition-data info-text">{{ recipe.nutrition.protein | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Calories:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.calories | safe }}kcal</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Total Fat:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.total_fat | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sat Fat:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.saturated_fat | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sodium:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.sodium | safe }}mg</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Carbohydrates:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.carbohydrates | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Sugar:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.sugar | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Fibre:</h6>
+                    <div class=" nutrition-data  info-text">{{ recipe.nutrition.fibre | safe }}g</div>
+                </div>
+                <div class="nutrition-item">
+                    <h6 class="" >Potassium:</h6>
+                    <div class="nutrition-data  info-text">{{ recipe.nutrition.potassium | safe }}mg</div>
+                </div>
+            </div>
+
+            <!-- Ask question box -->
+            <!-- <form action="/meal/ask-question" methods='POST' class="question-box box">
+                <h3 class="question-header">Got a question?</h3>
+
+                {% if latest_question %}
+                    <textarea placeholder="{{ latest_question | safe }}" name="question0" oninput="autoExpand(this)" class="question-input"></textarea>
+                {% else %}
+                    <textarea placeholder="Ask our AI..." name="question0" oninput="autoExpand(this)" class="question-input"></textarea>
+                {% endif %}
+
+                <button type="submit" class="send-question-button">Ask</button>
+            </form> -->
+        </div>
+
+        <div class="historybox box">
+            <h3 class="history-header">History:</h3>
+            <div class="history-p">{{ recipe.history | safe }}</div>
+        </div>
+
+        <div class="beverage-box box">
+            <h3 class="beverage-header">Beverages to match</h3>
+            {% for beverage_pairing in recipe.beverage_pairings %}
+            <p class="beverage-item-header"><strong>{{ beverage_pairing.beverage_name }}</strong></p>
+            <p class="beverage-description">{{ beverage_pairing.beverage_description }}</p>
+            {% endfor %}
+        </div>
+
+        <!-- Recipe Input Field -->
+        <form id="emailForm" class="email-form-box box" onsubmit="return validateForm();">
+            
+
+            <!-- Card Header -->
+            <h4 class="email-form-header">Contact the Gourmai Team</h4>
+            <p class="email-form-header-p">Your input helps us craft a better experience.</p>
+
+
+            {{ form.csrf_token }}
+
+            <!-- Form fields -->
+            <div class="name-email-box">
+
+                <!-- Name Field -->
+                <div class="email-input-field">
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>|
+                    {{ form.name(class="", placeholder="Name") }}
+                </div>
+
+                <!-- Email Field -->
+                <div class="email-input-field">
+                    <span class="material-symbols-outlined">
+                        mail
+                    </span>|
+                    {{ form.email(class="", placeholder="Email") }}
+                </div>
+            </div>
+
+            <!-- Subject Field -->
+            <div class="email-input-field">
+                <span class="material-symbols-outlined">
+                    edit
+                </span>|
+                {{ form.subject(class="", placeholder="Subject *") }}
+            </div>
+
+            <!-- Message Field -->
+            <div class="email-input-field textarea-input">
+                <span class="material-symbols-outlined">
+                    chat
+                </span>|
+                {{ form.message(class="", placeholder="Have Feedback or Spotted a Bug? Let Us Know! Your Input Matters.*") }}
+            </div>
+
+            <!-- Error Message -->
+            
+
+            <div class="email-error-message" id="error"></div>
+
+            <!-- Send Button -->
+            <div class="email-send-button-box">
+                <div class="email-response-message" id="result"></div>
+                {{ form.submit(class="email-send-button", id="sendButton") }}
+            </div>
+            <!-- Your JavaScript code -->
+            <script>
+                $(document).ready(function(){
+                    $('#sendButton').click(function(event){
+                        event.preventDefault();  // Prevent default form submission behavior
+                        var formData = $('#emailForm').serialize();  // Serialize form data
+                        $.ajax({
+                            url: '/canvas/contact_us',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response){
+                                $('#result').text(response.message);
+                            },
+                            error: function(xhr, status, error){
+                                $('#result').text(response.error);
+                                console.error(error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        </form>
+    </div>
+
+    <!------------------- Right Column ------------------->
+    <div class="right-container"> 
+
+        <!-- Ingredient Container -->
+        <div class="ingredient-box box">
+            <h3 class="ingredient-header">Ingredients:</h3>
+            
+            <div class="ingredient-list">  
+                {% for recipe_ingredient in recipe.ingredients %}
+                <div class="ingredient-item-box">
+                  <button type="button" class="change-ingredient-button" id="changeIngredientButton">
+                    <span class="material-symbols-outlined">cycle</span>
+                  </button>
+                  <div class="ingredient-name" new-item="" original-item="{{ recipe_ingredient.ingredient.name }}">
+                    <strong >{{ recipe_ingredient.ingredient.name }}</strong>
+                    <div class="substitutions-list"></div>
+                  </div>
+                  <div class="ingredient-quantity2" data-original-value="{{ recipe_ingredient.quantity }}">{{ recipe_ingredient.quantity }}</div>
+                  <input type="hidden" class="changed-value" id="hiddenInput_{{ loop.index }}">
+                </div>
+                {% endfor %}
+                
+            </div>
+            <div class="change-servings-box">
+                <button type="button" class="button-dark minusButton2">-</button>
+                <input class="servingsValue2"  type="text" value="1" pattern="\d*" placeholder="1">
+                <button type="button" class="button-dark plusButton2">+</button>
+                <button id="regenRecipeButton" style="display: none;" type="button">Rewrite Recipe</button>
+            </div>
+        </div>
+        
+        
+        <!-- Equipment Container -->
+        <div class="equipment-box box">
+            <h3 class="equipment-header">Equipment:</h3>
+            <div>         
+                {% for item in recipe.equipment %}
+                    <div class="equipment-item">{{ item }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Ask question box --> 
+        <form action="/meal/ask-question" method='POST' class="question-box box" id="questionForm">
+            <h3 class="question-header">Got a question?</h3>
+
+            {% if latest_question %}
+                <textarea placeholder="{{ latest_question | safe }}" name="question" oninput="autoExpand(this)" class="question-input"></textarea>
+            {% else %}
+                <textarea placeholder="Ask our AI..." name="question" oninput="autoExpand(this)" class="question-input"></textarea>
+            {% endif %}
+
+            <button type="submit" id="submitQuestion" class="send-question-button">Ask</button>
+
+            <script>
+                $(document).ready(function(){
+                    $('#questionForm').submit(function(event){
+                        event.preventDefault();  // Prevent default form submission behavior
+                        var formData = $(this).serialize();  // Serialize form data
+                        $.ajax({
+                            url: '/meal/ask-question',
+                            type: 'POST',
+                            data: formData,
+                            dataType: 'json',  
+                            success: function(response){
+                                $('#answer-box').css('display', 'block');
+                                $('#answer-content').html(response.message);
+                                var questionValue = $('#questionForm textarea[name="question"]').val();
+                                $('#questionForm textarea[name="question"]').attr('placeholder', questionValue);
+                                $('#questionForm textarea[name="question"]').val('');
+                            },
+                            error: function(xhr, status, error){
+                                $('#answer-content').html('An error occurred while fetching the answer.');
+                                console.error(error);
+                            }
+                        });
+                    });
+                });
+            </script>
+            
+        </form>
+        <!-- Answer question box -->
+        <div id="answer-box" class="answer-box box">
+            <h4>Gourmai:</h4>
+            <div id="answer-content" id="questionAwnser"></div>
+        </div>
+    </div>
+</div>
+<script>
+        // Function to navigate to a specific page when the back button is pressed
+        function redirectToPage() {
+        window.location.href = '/'; // Change this URL to your desired page
+        window.location.reload()
+    }
+</script>
+
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Recipe",
+        "name": "{{ recipe.recipe_name.name }}",
+        "image": "data:image/jpeg;base64,{{ recipe.image }}",
+        "nutrition": {
+            "@type": "NutritionInformation",
+            "calories": "{{ recipe.calories | safe }}",
+            "fatContent": "{{ recipe.total_fat | safe }}",
+            "saturatedFatContent": "{{ recipe.saturated_fat | safe }}",
+            "sodiumContent": "{{ recipe.sodium | safe }}",
+            "carbohydrateContent": "{{ recipe.carbohydrates | safe }}",
+            "fiberContent": "{{ recipe.sugar | safe }}",
+            "proteinContent": "{{ recipe.protein | safe }}",
+            "potassiumContent": "{{ recipe.potassium | safe }}"
+          },
+
+        "recipeCuisine" : "",
+        "recipeCategory": "{% for diet_tag in recipe.diet_tags %}{{ diet_tag }}{% if not loop.last %}, {% endif %}{% endfor %}",
+        "recipeYield" : "{{ recipe.servings }}",
+        "suitableForDiet" : "", 
+
+        "description": "{{ recipe.summary.summary | safe }}",
+        "prepTime": "{{ recipe.prep_time | safe }}",
+        "cookTime": "{{ recipe.cook_time | safe }}",
+        "recipeIngredient": [
+            {% for recipe_ingredient in recipe.recipe_ingredients %}
+            "{{ recipe_ingredient.ingredient.name }}"{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        "recipeInstructions": [
+            {% for step in recipe.method.method %}
+            {
+                "@type": "HowToStep",
+                "text": "{{ step | safe }}."
+            }
+            {% if not loop.last %},{% endif %}{% endfor %}
+        ],
+        "countryOfOrigin" : "{{ recipe.origin.origin | safe }}",
+
+    }
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script src="../../static/js/alter-ingredients.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DXCKEY6B6"></script>
+<script src="../../static/js/change-servings.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2DXCKEY6B6');
+</script>
+<!------------------- Local script imports ------------------->
+<script src="../../static/js/recipe.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0178PN5WQ">
+</script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K0178PN5WQ');
+</script>
+{% endblock %}

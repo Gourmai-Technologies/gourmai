@@ -1,0 +1,425 @@
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+/* Form Styles */
+.recipe-form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.recipe-form-box {
+    position: relative;
+    top: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 95%;
+
+    margin-bottom: 40px;
+}
+
+.hidden-form {
+    display: none !important;
+}
+
+
+.recipe-form {
+    max-width: 95%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    background-color: var(--site-accent);
+    padding: 0 25px 15px 25px;;
+    min-width: 250px;
+}
+
+.form-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--site-card) !important;
+
+    margin: 0;
+
+}
+
+.form-header h1 {
+    font-size: 1.5rem;
+    color: var(--site-card) !important;
+
+}
+
+.form-input-box {
+    border-bottom: 1px solid var(--site-card);
+    width: 95%;
+}
+
+.form-input {
+    background-color: var(--site-accent);
+    height: 40px;
+    color: var(--site-card);
+    outline: none;
+    border: none;
+    margin: 5px 0;
+    min-width: 100px;
+    width: 100%;
+    font-size: 0.8rem;
+    max-width: 95%;
+}
+/***************** Diet Dropdown Styles *******************/
+/* Style the dropdown button */
+    .diet-dropdown-button {
+    background-color: var(--site-accent);
+    color: var(--site-card);
+    font-size: 1rem;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+
+
+    display: flex;
+    justify-content: space-between;
+    }
+
+    /* Style the dropdown container */
+    .diet-dropdown {
+    display: inline-block;
+    position: relative;
+    }
+
+    /* Style the dropdown content (hidden by default) */
+    .diet-dropdown-content {
+    display: none;
+    position: relative;
+    z-index: 1;
+    }
+
+    /* Change color of dropdown links on hover */
+    .diet-dropdown-content a {
+    cursor: pointer;
+    color: var(--site-card);
+    }
+    .diet-dropdown-content a:hover {
+    background-color: #555;
+    border-radius: 5px;
+    }
+
+    .dietary-restriction-message {
+        color: red;
+        
+    }
+    .dietary-restrictions-item-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+
+    .dietary-restrictions-item {
+        display: flex;
+        justify-content: space-between;
+    }
+    .dietary-restrictions-item div {
+        color: var(--site-card);
+    }
+
+    .add-dietary-restriction-box {
+        display: flex;
+        align-items: center;
+        color: var(--site-card);
+    }
+
+    .add-button {
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .add-button:hover {
+        background-color: #555;
+    }
+
+.toggle-box-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+/* Style for the toggle switch */
+input:checked + .slider:before {
+    transform: translateX(10px) !important; 
+}
+.units-switch-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--site-card);
+}
+.switch {
+position: relative;
+display: inline-block;
+width: 35px;
+height: 25px;
+}
+
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 25px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 17px;
+width: 17px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+
+input:checked + .slider {
+background-color: #1069b3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+/***************** Slider Input *******************/
+.value {
+    text-align: center;
+    font-size: 20px;;
+    margin: 20px auto;
+    letter-spacing: -.07em;
+    color: var(--site-card);
+    max-width: 95%;
+}
+input[type="range"] {
+    margin-top: 10px !important;
+    margin-bottom: 0 !important;
+    display: block;
+    appearance: none;
+    background-color: var(--site-accent);
+    width: 300px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    border: 1px solid var(--site-card);
+    margin: 20px 0px 40px 0px;
+    max-width: 95%;
+}
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+background-color: var(--site-accent);
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border: 2px solid white;
+cursor: pointer;
+transition: .3s ease-in-out;
+}​
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid var(--site-accent);
+}
+input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.6);
+}
+
+/***************** Input Bar *******************/
+.input-bar-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 5vh;
+    width: 100%;
+}
+
+.input-bar {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--site-accent);
+    min-width: 40%;
+    border-radius: 5px;
+}
+
+.input-bar input {
+    background-color: transparent;
+    box-shadow: none !important;
+    flex-grow: 1;
+    height: 100%;
+    font-size: 20px;
+    color: var(--site-card);
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.input-bar i {
+    color: var(--site-card);
+    line-height: 1.6;
+    padding: 5px 15px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.input-bar i:active {
+    transform: translate(2px, 2px);
+}
+.recipe_failed_error_message {
+    color: red;
+    font-weight: bolder;
+}
+
+/***************** Checkbox switch *******************/
+.tickbox-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.meal-gen-switch {
+    margin-right: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--site-card);
+    background-color: var(--site-accent) !;
+    cursor: pointer;
+}
+
+.tickbox-box .meal-gen-switch::after {
+    content: "";
+    display: none;
+    width: 30px;
+    height: 30px;
+    background-color: var(--site-accent) !important;
+}
+
+.tickbox-box input[type="checkbox"]:checked + .meal-gen-switch::after {
+    display: block;
+}
+
+.tickbox-label {
+    color: var(--site-card);
+    font-size: 15px;
+}
+
+/* Discovery Form section */
+.header-section {
+    width: 100%;
+    background-color: grey;
+    height: 100px;
+    margin-top: 100px;;
+}
+
+
+
+/*************************** min max slider ************************/
+
+
+
+.double_range_slider {
+margin-top: 50px;
+  width: 100%;
+  height: 10px;
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 20px;
+}
+.range_track {
+  height: 100%;
+  position: relative;
+  border-radius: 20px;
+  z-index: -10 !important;
+
+}
+
+.min-max-slider {
+    position: absolute;
+    height: 5px;
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    top: -0px; /* Adjust this value to move the thumb above the track */
+    transform: translateY(-50%);
+    z-index: 1; /* Set z-index to bring it forward */
+  }
+  
+  .min-max-slider::-webkit-slider-thumb {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    pointer-events: auto;
+    -webkit-appearance: none;
+    cursor: pointer;
+    margin-bottom: -1px;
+    z-index: 2; /* Set z-index higher than track */
+}
+  
+  .min-max-slider::-moz-range-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    pointer-events: auto;
+    -moz-appearance: none;
+    cursor: pointer;
+    margin-top: 100%;
+    z-index: 2; /* Set z-index higher than track */
+  }
+
+  .min-max-box {
+    position: relative;
+    top: -30px;
+    left: 100%;
+    transform: translateX(-58%);
+    display: flex;
+    align-items: center;
+    color: var(--site-card);
+    gap: 2px;
+  }

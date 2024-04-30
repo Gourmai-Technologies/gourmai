@@ -1,0 +1,128 @@
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<div class="gourmai-title">
+
+<nav>
+    <ul class="left-list">
+    <!---- Home button ---->
+    <li class="">
+        <a href="{{url_for('discovery_bp.load_discovery')}}" class="nav-button" role="button">
+          HOME
+        </a>
+      </li>
+  
+        <!---- Landing button ---->
+        
+    <!--  <li class="">
+        <a href="{{url_for('home_bp.landing')}}" class="nav-button" role="button">
+          LANDING
+        </a>
+      </li> -->
+  
+      <!---- Recipe Button ---->
+      <!-- <li class="">
+        <a href="{{url_for('meal_bp.test_recipe')}}" class="nav-button">
+          RECIPE
+        </a>
+      </li> -->
+    </ul>
+
+    <div class="nav-title">Gourmai</div>
+
+    <ul class="right-list-box">
+      <section class="p-menu1">
+        <input class="menu-btn" type="checkbox" id="menu-btn" name="menu-btn"/>
+        <label class="menu-icon" for="menu-btn">
+          <span class="navicon" aria-label="Hamburger menu 'icon'">
+        </label>
+        <div class="menu">
+          {% if current_user.is_authenticated %}
+              <a class="accountToolTipTrigger">
+                <div class="token-box">
+                  <span class="material-symbols-outlined account-icon nav-item">account_circle</span>
+                  <div  class="token-label account-icon-box">Profile</div>
+                </div>
+              </a>
+
+              <a class="recipe-book-button-box" href="{{url_for('canvas_bp.recipe_book')}}"><span class="material-symbols-outlined">menu_book</span>Recipes
+                
+              </a>
+              
+              <!-- <a href="{{url_for('payments_bp.pricing')}}">          
+                <div class="token-box">
+                  <div class="token-count">{{ current_user.tokens }}</div>
+                  <div class="token-label">Tokens</div>
+                </div>
+              </a> -->
+              
+          {% else %}
+
+              <!---------- Active when logged out ------------>
+              <!---- Sign in Button ---->
+              <a href="{{url_for('auth_bp.login')}}" class="nav-button nav-item" role="button">
+              LOG IN
+              </a>     
+            <!---- Sign Up Button ---->
+              <a href="{{url_for('auth_bp.register')}}" class="nav-button nav-item " role="button">
+              REGISTER
+              </a>
+        {% endif %}
+        </div>
+      </section>
+
+      <ul class="right-list">
+        {% if current_user.is_authenticated %}
+
+        <li>
+          <div>
+            <a class="recipe-book-button-box" href="{{url_for('canvas_bp.recipe_book')}}"><span class="material-symbols-outlined">menu_book</span>Recipes
+          </div>
+        </li>
+        <li >
+          <!-- <a href="{{url_for('payments_bp.pricing')}}">          
+            <div class="token-box">
+              <div class="token-count">{{ current_user.tokens }}</div>
+              <div class="token-label">Tokens</div>
+            </div>
+          </a> -->
+        </li>
+        <li class="accountToolTipTrigger">
+          <a class="account-icon-box" href="">
+                <span class="material-symbols-outlined">account_circle</span>
+                <div class="profile-label">Profile</div>
+            </a>
+          </div>
+        </li>
+        
+        {% else %}
+      
+            <!---------- Active when logged out ------------>
+            <!---- Sign in Button ---->
+        <li class="signin-item">
+            <a href="{{url_for('auth_bp.login')}}" class="nav-button" role="button">
+            LOG IN
+            </a>     
+        </li>
+    
+        <!---- Sign Up Button ---->
+        <li class="register-button-box">
+            <a href="{{url_for('auth_bp.register')}}" class="nav-button " role="button">
+            REGISTER
+            </a>
+        </li>
+
+      {% endif %}
+      </ul>
+    </ul>
+    
+    <!---------- Account tool tip ------------>
+    <div id="accountToolTip" class="account-summary-box">
+        <p>Hello, <strong>{{current_user}}</strong> </p>
+        <p>{{ current_user.email }}</p>
+        <!--
+        <a href="{{url_for('canvas_bp.settings')}}" class="btn btn-sm mb-0 me-1 sign-out-button custom-button" role="button">Account Preferences</a> -->
+        <a href="{{url_for('auth_bp.logout')}}" class="sign-out-button custom-button" role="button">Sign Out</a>
+    </div>
+</nav>
+
+<script src="../../static/js/base.js"></script>

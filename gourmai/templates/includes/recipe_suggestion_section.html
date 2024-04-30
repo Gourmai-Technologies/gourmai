@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="../../static/css/discovery/suggestion_section.css">
+
+<section class="hidden-items-seciton">
+    
+    <section class="suggestion-container" id="suggestion-container">
+
+     {% if suggestion1 %}
+     <h3>Choose a main...</h3>
+        <form class="main-suggestion-form" action="/meal/generate-sides" method="POST">
+            
+            
+            <!-- Hidden input field to store the selected suggestion -->
+            <input type="hidden" name="selectedMainSuggestion" id="selectedMainSuggestion">
+        
+            <!-- Dynamic suggestion cards -->
+            <div class="main-suggestion-card" onclick="selectSuggestion(this, '{{ suggestion1 }}')">
+                <h5>{{ suggestion1 }}</h5>
+                <p>{{mainsummary1.summary}}</p>
+            </div>
+
+            <div class="main-suggestion-card" onclick="selectSuggestion(this, '{{ suggestion2 }}')">
+                <h5>{{ suggestion2 }}</h5>
+                <p>{{ mainsummary2.summary}}</p>
+            </div>
+
+            <div class="main-suggestion-card" onclick="selectSuggestion(this, '{{ suggestion3 }}')">
+                <h5>{{ suggestion3 }}</h5>
+                <p>{{ mainsummary3.summary}}</p>
+            </div>
+            <div class="main-suggestion-card" onclick="selectSuggestion(this, '{{ suggestion4 }}')">
+                <h5>{{ suggestion4 }}</h5>
+                <p>{{ mainsummary4.summary}}</p>
+            </div>
+
+            <div class="main-suggestion-card" onclick="selectSuggestion(this, '{{ suggestion5 }}')"> 
+                <h5>{{ suggestion5 }}</h5>
+                <p>{{ mainsummary5.summary}}</p>
+            </div>
+
+            <!-- Hidden submit button -->
+            <button id="hiddenSubmitButton" style="display: none;"></button>
+
+        </form>
+     {% endif %}
+ 
+
+     {% if side1 %}
+     <h3>Fancy a side?</h3>
+     <form class="side-suggestion-form" id="side-suggestion-form" action="/meal/generate-recipe-from-suggestions" method="POST">
+
+         <!-- Hidden input field to store the selected suggestion -->
+         <input type="hidden" name="selectedSideSuggestion" id="selectedSideSuggestion">
+         <input type="hidden" name="selectedMain" id="selectedMainSuggestion">
+
+
+         <div class="side-suggestion-card" onclick="selectSideSuggestion(this, '{{ side1 }}')">{{ side1 }}</div>
+         <div class="side-suggestion-card" onclick="selectSideSuggestion(this, '{{ side2 }}')">{{ side2 }}</div>
+         <div class="side-suggestion-card" onclick="selectSideSuggestion(this, '{{ side3 }}')">{{ side3 }}</div>
+         <div class="side-suggestion-card" onclick="selectSideSuggestion(this, '{{ side4 }}')">{{ side4 }}</div>
+         <div class="side-suggestion-card" onclick="selectSideSuggestion(this, '{{ side5 }}')">{{ side5 }}</div>
+         
+     </form>
+     {% endif %}
+
+     {% if suggestion1 %}
+     <div class="action-button-container">
+         <form action="{{url_for('discovery_bp.load_discovery')}}"><button class="suggestion-action-button">Start Again</button></form>
+         <form class="regenerate-button-form" action="/meal/regenerate-suggestions" method="POST">
+             <button class="suggestion-action-button " onclick="resetSelection()
+             "><span class="material-symbols-outlined">autorenew</span></button>
+         </form>
+         <button onclick="submitGenerateOnSuggestionForm()" class="suggestion-action-button">Generate Recipe</button>
+
+
+     </div>
+     {% endif %}
+
+</section>
+
+<script src="../../static/js/recipe_suggestions.js"></script>

@@ -1,0 +1,45 @@
+{% extends "layouts/main_base.html" %}
+
+{% block metatags %}
+
+<title>Gourmai</title>
+
+<!-- Local links -->
+<link rel="stylesheet" href="../../static/css/payments/pricing.css">
+
+
+{% endblock %}
+{% block contents %}
+
+
+<main>
+    
+    <section class="header-section">
+        <h1>Choose a plan that fits your needs.</h1>
+        <p>Build your recipe profile one great recipe at a time!</p> 
+    </section>
+
+    <section class="pricing-card-section">
+
+        <div class="pricing-card">     
+            <h3 class="pricing-card-name">Top Up</h3>
+            <h3 class="pricing-card-price">£10</h3>
+            <div class="button-caption-box">
+                <p>100 recipe tokens</p>
+                <a href="/payments/create-checkout-session" class="buy-button">Buy Now</a>
+            </div>
+        </div>
+
+        <div class="pricing-card monthly-card">
+            <h3 class="pricing-card-name">Monthly Plan</h3>
+            <div> 
+                <h2 class="pricing-card-price">£??</h2>
+            </div>
+            <a class="buy-button" href="">Coming Soon!</a>
+        </div>
+        
+    </section>
+
+
+</main>
+{% endblock %}

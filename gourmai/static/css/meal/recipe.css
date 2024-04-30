@@ -1,0 +1,621 @@
+/********************* Global Styles **********************/
+:root {
+    --site-background: rgb(215, 215, 215); /*Slightly offwhite site background color.*/
+    --site-accent: rgba(46,50,44,255); /* A dark grey */
+    --site-card: #ededede3; /* Off white */
+}
+
+/********************* Recipe page general **********************/
+.recipecontainer {
+    display: grid; 
+    grid-template-columns: 21% 55% 23%;
+    grid-gap: 10px;
+    width: 60vw;
+    max-width: 1200px;
+    max-height: 95%;
+    margin: 0px auto 10px auto;
+    padding-bottom: 10px;
+}
+
+/********************* Message to users **********************/
+.message-to-user-section {
+    margin: 60px auto 10px auto;
+    width: 60vw;
+    max-width: 1200px;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-message-input {
+    width: 100% !important;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.message-p {
+    border-bottom: 1px solid var(--site-accent);
+    padding-bottom: 15px;;
+}
+@media (max-width: 600px) {
+    .message-to-user-section {
+        width: 100%;
+        max-width: 100vw;
+    }
+    .recipecontainer {
+        margin: 0 !important;
+    }
+}
+
+
+.bottom-container {
+    display: none;
+}
+
+.float-right {
+    float: right;
+}
+
+.box {
+    box-shadow: 0 0.4vw .6vw rgba(0, 0, 0, 0.1);
+    padding: 1vw 1.5vw;
+    background-color: #ededede3;
+    border-radius: .2vw;
+    z-index: 2;
+}
+
+/********************* Left Column **********************/
+
+/********** Nutrition Box **********/
+.nutrition-header {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+.nutrition-data {
+    font-size: 1rem;
+    text-align: right;
+}
+.nutrition-container {
+    border-bottom: 1px solid var(--site-accent);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.nutrition-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 20px;
+    margin-bottom: 10px;
+}
+
+.nutrition-item h6 {
+    font-size: 1rem;
+}
+
+/* For mobile */
+.nutrition-question-box {
+    display: none;
+}
+/********** Recipe Information Box **********/
+.recipe-information-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 20px;
+    margin-bottom: 10px;
+}
+
+.recipe-information-item h6 {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.info-item {
+    font-size: 1rem;   
+    text-align: right;
+}
+
+.save-recipe-button-box {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;;
+}
+
+.generate-recipe-link-button {
+    height: 50px;
+    width: 40%; 
+    background-color: var(--site-accent);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: var(--site-card);
+    text-decoration: none;
+    border-radius: 5px;;
+    cursor: pointer;
+    user-select: none;
+}
+
+.save-recipe-button, .save-recipe-button2 {
+    height: 50px;
+    width: 60%; 
+    background-color: var(--site-accent);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    color: var(--site-card);
+    text-decoration: none;
+    border-radius: 5px;;
+    user-select: none;
+    cursor: pointer;
+}
+
+.save-recipe-button:active,  .generate-recipe-link-button:active  {
+    transform: translate(2px, 2px);
+}
+
+/********** Tags  **********/
+.tag-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.allergen-label {
+    font-weight: bold;
+}
+.allergen-tag-box, .diet-tag-box {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+
+    font-size: 0.8rem;
+}
+.tag {
+    position: relative;
+    display: inline-block;
+    padding: 0px 6px;
+    margin-right: 10px;;
+    background-color: var(--site-accent);
+    color: white;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .tag::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px; /* Adjust this value to control the size of the triangle */
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 13px solid var(--site-accent); /* Color same as background */
+  }
+/********** Contact us box  **********/
+.contactus-button {
+    max-height: 50px;
+    border: none !important;
+    margin-top: 0.75vw;
+    background-color: var(--site-accent) !important;
+    color: var(--site-card);
+    
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.contactus-button:active  {
+    transform: translate(2px, 2px);
+}
+
+/* Contact Form */
+
+.email-form-box {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.email-form-header {
+    margin: 0;
+}
+
+.email-form-header-p {
+    margin: 0 0 10px 0;
+
+}
+
+.name-email-box {
+    display: flex;
+    flex-grow: 1;
+    gap: 10px;
+    justify-content: space-between;
+}
+.email-input-field {
+    display: flex;
+    flex-grow: 1;
+    gap: 5px;
+    border-bottom: 1px solid var(--site-accent);
+
+    margin-top: 5px;;
+}
+
+.email-input-field span {
+    font-size: 1.25rem;
+}
+.email-input-field input{
+    display: flex;
+    flex-grow: 1;
+    height: 20px;
+    background-color: var(--site-card);
+    
+    outline: none;
+    border: none;
+    box-shadow: none;
+    
+    margin-bottom: 10px;
+}
+.textarea-input {
+    border: 1px solid var(--site-accent) !important;
+    padding: 5px;
+}
+.email-input-field textarea {
+    display: flex;
+    flex-grow: 1;
+    min-height: 200px;
+
+    background-color: var(--site-card);
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 10px;
+    resize: none;
+    border: none;
+
+}
+.email-send-button-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+.email-send-button {
+    width: 200px;
+    height: 25px;;
+    justify-content: center;
+    background-color: var(--site-accent);
+    color: var(--site-card);
+    box-shadow: none;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+/********************* Center Column **********************/
+
+.centercontainer {
+    display: grid;
+    grid-gap: 10px;
+    min-width: 100%;
+    margin-bottom: 25px;
+}
+
+/************* Image Styles **************/
+.recipeimagecontainer {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 0;
+    margin: 0;
+    max-height: 50vh;
+    overflow: hidden; 
+}
+
+.recipeimage {
+    height: auto;
+    width: 100% !important;
+    border-radius: .2vw;
+    z-index: 3;
+}
+
+/*************** Header Styles **************/
+.origin {
+    margin-left: 0.75vw;
+    font-weight: bold;
+}
+.dish-name {
+    margin: 5px 0;
+}
+
+.name-origin-box {
+    display: flex;
+    align-items: baseline;
+}
+
+
+/*************** Method Styles **************/
+
+.method-header {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.method-ol {
+    margin: 0;
+    padding: 5px 25px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.method-ol li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.method-ol li:hover {
+    color: #999;
+}
+/* Style for crossed-out text */
+.crossed-out {
+    text-decoration: line-through;
+    /* You can also add other styles to make it visually distinguishable */
+    color: #999; /* Example color */
+}
+
+/*********** History Box **************/
+.history-header {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+.history-p {
+    margin-left: 5px;
+}
+
+/*********** Beverage Box **************/
+.beverage-header {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+
+.beverage-item-header {
+    font-size: 1rem;
+    margin: 0 0 2px 0;
+}
+
+.beverage-description {
+    margin: 0 0 15px 10px;
+}
+/********************* Right Column **********************/
+.right-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/*********** Ingredient Box **************/
+.ingredient-header {
+    margin: 0 0 5px 0 !important;
+    font-size: 1.5rem;
+}
+
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredient-item-box {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ingredient-name, .ingredient-quantity {
+    font-size: 1rem;
+}
+
+.ingredient-quantity {
+    text-align: right;
+}
+
+.change-ingredient-button {
+    outline: none;
+    border:none;
+    background-color: var(--site-card);
+    width: min-content;
+    height: min-content;
+}
+.change-ingredient-button span{
+
+    font-size: 1rem !important;
+}
+
+
+.substitution-item {
+    margin-left: 25px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+/*********** Equipment Box **************/
+.equipment-header {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+.equipment-list {
+    display: flex;
+    flex-direction: column;
+}
+.equipment-item {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+/********** Question Input **********/
+.question-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.question-header {
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+    text-align: center;
+}
+
+.question-input {
+    background-color: var(--site-card);
+    height: auto;
+    resize: none;
+    min-height: 100px;
+    max-height: 200px;
+    font-size: 1rem;
+    color: var(--site-accent);
+    border-radius: 4px;
+}
+
+.question-input:focus {
+    border: 1px solid var(--site-accent);
+    outline: none;
+}
+
+.send-question-button {
+    border: none !important;
+    margin-top: 0.5vw;
+    background-color: var(--site-accent) !important;
+    color: var(--site-card);
+    border-radius: 4px;
+}
+
+.send-question-button:active {
+    transform: translate(0.1vw, 0.1vw);
+}
+
+/********** Answer **********/
+.answer-box {
+    display: none;
+    margin-top: 0.75vw;
+}
+
+
+/********************* Error message. **********************/
+.imageerrormessage {
+    position: absolute;
+    color: red;
+    font-size: .75vw;
+    top: 6.5vh;
+    left: 50%;
+    transform: translateX(-60%);
+    z-index: 1;
+}
+
+/*********************************************** max-width: 1070px Tablet size ***********************************************************/
+@media (max-width: 1070px) {
+
+    /********************* Recipe page general **********************/
+    .recipecontainer {
+        
+        width: 98%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin: 55px auto 10px auto;
+    }
+    .box {
+        box-shadow: 0 0.4vw .6vw rgba(0, 0, 0, 0.1);
+        padding: 3vw 4vw !important;
+        background-color: #ededede3;
+        border-radius: .2vw;
+        z-index: 2;
+    }
+
+    /****************** Nutrition and Question area ********************/
+    .nutrition-question-box {
+        display: flex;
+        gap: 5px;
+    }
+    .nutrition-container-mobile, .question-box {
+        width: 50%;
+    }
+
+    .question-box textarea {
+        height: 100%;
+    }
+
+    .bottom-container {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+
+    /****************** Image ********************/
+    .recipeimagecontainer {
+        padding: 0 !important;
+    }
+    
+    .recipe-info-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .info-item h6 {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 5px;
+    }
+
+    .info-text {
+        font-size: 0.9rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        max-height: 20px !important;
+        min-width: 150px;
+    }
+
+    /****************** Left Column ********************/
+    .leftcontainer {
+        display: none;
+    }
+
+    /****************** Center Column ******************/
+    .centercontainer {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 25px !important;;
+    }
+
+    /****************** Bottom Container ***************/
+    .right-container {
+        display: none !important;
+    }
+
+    .nutrition-container {
+        display: none;
+    }
+    .ingredient-equipment-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+    }
+}

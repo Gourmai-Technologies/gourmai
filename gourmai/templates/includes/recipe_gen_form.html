@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="../../static/css/discovery/recipe_gen_form.css">
+<link rel="stylesheet" href="https://unpkg.com/intro.js/introjs.css">
+<section class="recipe-form-section">
+
+    <div class="recipe-form-box">
+        <form id="recipeForm" action="/meal/generate-recipe" method="POST" class="recipe-form active-form">
+
+            <div class="form-header">
+                <h1>Customise your recipe...</h1>
+                <p>Leave all fields blank for a random recipe, <br> only add the perameters you want!</p>
+            </div>
+            <div class="form-input-box intro-first">
+                <input class="form-input" name="recipeInput" id="recipeInputBox" type="text" placeholder="Recipe name">
+            </div>
+            <div class="form-input-box intro-second">
+                <input class="form-input" placeholder="Ingredient suggestion" type="text" name="ingredientSuggestion">
+            </div>
+
+            <div class="form-input-box intro-third">
+                <input class="form-input" placeholder="Context Suggestion" type="text"  name="contextSuggestion">
+            </div>
+
+            <div class="form-input-box intro-fourth"> 
+                <input class="form-input" placeholder="Cuisine" type="text" name="cuisine">
+            </div>
+
+            <!-- <div class="form-input-box">
+                <input class="form-input" placeholder="Servings" type="text"  name="servings">
+            </div> -->
+
+            <div class="diet-dropdown form-input-box intro-fith">
+                <div type="button" onclick="toggleDropdown()" class="diet-dropdown-button">
+                    <div>Dietary Restrictions</div>
+                    <span class="material-symbols-outlined">expand_more</span>
+                </div>
+
+                <div id="dropdownContent" class="diet-dropdown-content ">
+                        <div class="dietary-restrictions-item-box">
+
+                            {% if not current_user.is_authenticated %}
+                                <div class="dietary-restriction-message">Sorry you need to be logged in to use this feature.</div>
+                            {% endif %}
+
+                            {% if current_user.dietary_restrictions %}
+                                {% for key, value in current_user.dietary_restrictions.items() %}
+                                <div class="dietary-restrictions-item">                         
+                                    <div class="dietary-restriction-item">{{ key }}</div>
+                                    <a class="removeDietaryRestrictionButton"><span class="material-symbols-outlined">close</span></a>                       
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    <div class="add-dietary-restriction-box ">
+                        <input class="form-input " id="dietaryRestrictionInput" type="text" placeholder="Add a dietary restriction here">
+                        <span id="addDietaryRestrictionButton" class="material-symbols-outlined add-button">add</span>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+
+            
+            <div class="slider-input-box intro-sixth">
+
+                <div class="value" id="difficultyValueInput">Intermediate</div>
+
+                <input id="difficultySlider" name="difficulty" type="range" min="0" max="5" step="1" value="3">
+
+                <input type="hidden" id="hiddenDifficultySliderValue" name="difficultyValue">
+            </div>
+
+            
+            <div class="double_range_slider intro-seventh">
+                <div class="min-max-box">                  
+                    <div class="minvalue"></div>
+                    -
+                    <div class="maxvalue"></div>
+                    mins
+                </div>
+                <span class="range_track" id="range_track"></span>
+
+                <input type="range" class="min min-max-slider" min="0" max="178" value="0" step="10">
+                <input type="range" class="max min-max-slider" min="0" max="180" value="180" step="10">
+                <input id="hiddenTimeInput" name="timeValue" type="hidden" value="">
+            </div>
+            
+            
+
+
+            <div class="toggle-box-box">
+                <!-- <div class="tickbox-box intro-eigth">
+                    <input id="tickBox" name="meal-gen-switch" type="checkbox" unchecked class="meal-gen-switch  ">
+                    <label class="tickbox-label" for="tickBox">Generate meal options...</label>
+                </div> -->
+
+                <div class="units-switch-box intro-ninth">
+                    <div id="unitsLabel">{% if current_user.measurement_units %}{{ current_user.measurement_units }}{% else %}Metric{% endif %}</div>
+                    <label class="switch">
+                        <input value="" type="checkbox" id="measurementInput" {% if current_user.measurement_units == 'imperial' %} checked {% endif %}>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                
+                <input type="hidden" name="unitInput" id="unitInput" value="{{ current_user.measurement_units }}">
+                <input type="hidden" name="recipeInput" value="">
+                
+                
+            </div>
+            {% if not current_user.is_authenticated%}
+                <p class="">Log in for your preferences to be saved!</p>
+            {% endif %}
+            <span class="button-light intro-tenth" onclick="submitRecipeFormFromOutside(); resetSelection()">Create Recipe</span>
+        </form>
+        
+    </div>
+
+
+    <div class="recipe_failed_error_message">{{ recipe_failed_error_message }}</div>
+</section>
+<script src="../../static/js/recipe_gen_form.js"></script>
+
+<script src="https://unpkg.com/intro.js/intro.js"></script>
+
+
